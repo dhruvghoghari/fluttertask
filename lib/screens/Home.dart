@@ -65,19 +65,27 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Expanded(child: TextField(
+                Expanded(child:
+                TextField(
                   decoration: InputDecoration(
-                    labelText: 'Search product',
-                    hintText: 'Search...',
+                    // labelText: 'Search Brands and Products',
+                    hintText: 'Search Brands and Products...',
                     prefixIcon: Icon(Icons.search),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(25.0),
-                      ),
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: Colors.blue),
                     ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[100],
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
                   ),
                   controller: _name,
-                )),
+                )
+                ),
                 ElevatedButton(onPressed: (){
 
                   var q = _name.text.toString();

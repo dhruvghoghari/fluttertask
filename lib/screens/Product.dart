@@ -24,9 +24,7 @@ class _ProductState extends State<Product> {
       var json = jsonDecode(body);
 
       setState(() {
-        allData = json["products"]
-            .map<MainUser>((obj) => MainUser.fromJson(obj))
-            .toList();
+        allData = json["products"].map<MainUser>((obj) => MainUser.fromJson(obj)).toList();
       });
     }
 

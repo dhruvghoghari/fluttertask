@@ -11,33 +11,73 @@ class MainTab extends StatefulWidget {
 }
 
 class _MainTabState extends State<MainTab> {
+
+  int _currentIndex = 0;
+
+  final List<Widget> _tabs = [
+    Home(),
+    Productcategory(),
+    Userprofile(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: TabBar(
-            tabs: [
-              Tab(
-                child: Text("Home"),
-              ),
-              Tab(
-                child: Text("Category"),
-              ),
-              Tab(
-                child: Text("User Profile"),
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('D Factory'),
+        actions: [
+          PopupMenuButton(
+            onSelected: (value) {
+            },
+            itemBuilder: (BuildContext bc) {
+              return const [
+                PopupMenuItem(
+                  child: Text("Hello"),
+                  value: 'hello',
+                ),
+                PopupMenuItem(
+                  child: Text("About"),
+                  value: 'about',
+                ),
+                PopupMenuItem(
+                  child: Text("Contact"),
+                  value: 'contact',
+                )
+              ];
+            },
+          )
+        ],
+      ),
+      body: _tabs[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-        ),
-        body: TabBarView(
-          children: [
-            Home(),
-            Productcategory(),
-            Userprofile()
-          ],
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Category',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'User Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications_active_outlined),
+            label: 'Notifications',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Cart',
+          ),
+        ],
       ),
     );
   }
